@@ -1,11 +1,5 @@
-import VueFlexItem from './VueFlexItem';
-
-let VueFlexBox = {
+export default {
 	name: 'VueFlexBox',
-
-	components: {
-		[VueFlexItem.name]: VueFlexItem,
-	},
 
 	props: {
 		tag: {
@@ -44,29 +38,49 @@ let VueFlexBox = {
 			type: String,
 			default: 'start',
 		},
-		gapAround: {
+		padding: {
 			type: Number,
 			default: 0,
 		},
-		gapBetween: {
+		spacing: {
 			type: Number,
 			default: 0,
+		},
+	},
+
+	computed: {
+		childrenPadding() {
+			if (this.$parent && this.$parent.$options.name === 'VueFlexBox') {
+				return this.$parent.childrenPadding;
+			}
+			return this.spacing / 2;
+		},
+
+		margin() {
+			if (this.$parent && this.$parent.$options.name === 'VueFlexBox') {
+				return 0;
+			}
+			return this.padding - this.childrenPadding;
 		},
 	},
 
 	render(createElement) {
 		let tag = this.tag;
-		let style = this.style;
+		let fillHeight = this.fillHeight;
+		let directionColumn = this.directionColumn;
+		let reverseDirection = this.reverseDirection;
+		let wrap = this.wrap;
+		let reverseWrap = this.reverseWrap;
+		let justifyContent = this.justifyContent;
+		let alignItems = this.alignItems;
+		let alignContent = this.alignContent;
+		let margin = this.margin;
 
-		return createElement(tag, {style}, this.$slots.default);
-	},
-
-	computed: {
-		styleFlexDirection() {
-			let directionColumn = this.directionColumn;
-			let reverseDirection = this.reverseDirection;
-
-			return (
+		let style = {
+			position: 'relative',
+			margin: margin === 0 ? 0 : `${margin}px`,
+			display: 'flex',
+			flexDirection: (
 				directionColumn
 					? reverseDirection
 						? 'column-reverse'
@@ -74,103 +88,43 @@ let VueFlexBox = {
 					: reverseDirection
 						? 'row-reverse'
 						: 'row'
-			);
-		},
+			),
+			flexWrap: (
+				wrap
+					? reverseWrap
+						? 'wrap-reverse'
+						: 'wrap'
+					: 'nowrap'
+			),
+			justifyContent: (() => {
+				switch (justifyContent) {
+					case 'start':
+						return 'flex-start';
+					case 'end':
+						return 'flex-end';
+				}
+				return justifyContent;
+			})(),
+			alignItems: (() => {
+				switch (alignItems) {
+					case 'start':
+						return 'flex-start';
+					case 'end':
+						return 'flex-end';
+				}
+				return alignItems;
+			})(),
+			alignContent: (() => {
+				switch (alignContent) {
+					case 'start':
+						return 'flex-start';
+					case 'end':
+						return 'flex-end';
+				}
+				return alignContent;
+			})(),
+		};
 
-		styleFlexWrap() {
-			let wrap = this.wrap;
-			let reverseWrap = this.reverseWrap;
-
-			return wrap ? reverseWrap ? 'wrap-reverse' : 'wrap' : 'nowrap';
-		},
-
-		styleJustifyContent() {
-			let justifyContent = this.justifyContent;
-
-			switch (justifyContent) {
-				case 'start':
-					return 'flex-start';
-				case 'end':
-					return 'flex-end';
-			}
-			return justifyContent;
-		},
-
-		styleAlignItems() {
-			let alignItems = this.alignItems;
-
-			switch (alignItems) {
-				case 'start':
-					return 'flex-start';
-				case 'end':
-					return 'flex-end';
-			}
-			return alignItems;
-		},
-
-		styleAlignContent() {
-			let alignContent = this.alignContent;
-
-			switch (alignContent) {
-				case 'start':
-					return 'flex-start';
-				case 'end':
-					return 'flex-end';
-			}
-			return alignContent;
-		},
-
-		itemPadding() {
-			return this.gapBetween / 2;
-		},
-
-		margin() {
-			return this.gapAround - this.itemPadding;
-		},
-
-		styleMargin() {
-			let margin = this.margin;
-
-			return margin === 0 ? 0 : `${margin}px`;
-		},
-
-		style() {
-			let fillHeight = this.fillHeight;
-			let flexDirection = this.styleFlexDirection;
-			let flexWrap = this.styleFlexWrap;
-			let justifyContent = this.styleJustifyContent;
-			let alignItems = this.styleAlignItems;
-			let alignContent = this.styleAlignContent;
-			let margin = this.styleMargin;
-
-			let returns = {
-				position: 'relative',
-				margin,
-				display: 'flex',
-				flexDirection,
-				flexWrap,
-				justifyContent,
-				alignItems,
-				alignContent,
-			};
-			if (fillHeight) {
-				returns.height = '100%';
-			}
-			return returns;
-		},
-
-		itemStylePadding() {
-			let itemPadding = this.itemPadding;
-
-			return itemPadding === 0 ? 0 : `${itemPadding}px`;
-		},
+		return createElement(tag, {style}, this.$slots.default);
 	},
 };
-
-export default VueFlexBox;
-export {VueFlexItem};
-
-if (typeof window !== 'undefined' && window.Vue) {
-	window.Vue.component(VueFlexBox.name, VueFlexBox);
-	window.Vue.component(VueFlexItem.name, VueFlexItem);
-}

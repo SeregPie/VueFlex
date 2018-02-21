@@ -8,24 +8,23 @@ export default {
 		},
 	},
 
-	render(createElement) {
-		let tag = this.tag;
-		let style = this.style;
-
-		return createElement(tag, {style}, this.$slots.default);
+	computed: {
+		padding() {
+			if (this.$parent && this.$parent.$options.name === 'VueFlexBox') {
+				return this.$parent.childrenPadding;
+			}
+			return 0;
+		},
 	},
 
-	computed: {
-		stylePadding() {
-			return this.$parent ? this.$parent.itemStylePadding : 0;
-		},
+	render(createElement) {
+		let tag = this.tag;
+		let padding = this.padding;
 
-		style() {
-			let padding = this.stylePadding;
+		let style = {
+			padding: padding === 0 ? 0 : `${padding}px`,
+		};
 
-			return {
-				padding,
-			};
-		},
+		return createElement(tag, {style}, this.$slots.default);
 	},
 };
