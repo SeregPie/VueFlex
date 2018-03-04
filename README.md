@@ -46,7 +46,7 @@ export default {
 
 ```html
 <script src="https://unpkg.com/vue"></script>
-<script src="https://unpkg.com/vueflexbox"></script>
+<script src="https://unpkg.com/vueflex"></script>
 ```
 
 If Vue is detected, the component will be registered automatically.

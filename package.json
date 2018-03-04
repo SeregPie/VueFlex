@@ -1,8 +1,8 @@
 {
-	"name": "vueflexbox",
+	"name": "vueflex",
 	"version": "18.1.22",
 	"description": "...",
-	"main": "VueFlexBox.js",
+	"main": "VueFlex.js",
 	"scripts": {
 		"build": "rollup -c",
 		"prepublishOnly": "npm run build"
@@ -12,8 +12,8 @@
 		"url": "git+https://github.com/SeregPie/VueFlexBox.git"
 	},
 	"keywords": [
-		"flex",
 		"component",
+		"flex",
 		"vue"
 	],
 	"author": "Sergej Sintschilin",
@@ -26,9 +26,10 @@
 		"vue": "^2.5.13"
 	},
 	"devDependencies": {
-		"eslint": "^4.16.0",
-		"rollup": "^0.54.1",
-		"rollup-plugin-buble": "^0.18.0",
-		"rollup-plugin-uglify": "^3.0.0"
+		"rollup": "^0.56.3",
+		"rollup-plugin-buble": "^0.19.2",
+		"rollup-plugin-node-resolve": "^3.0.3",
+		"rollup-plugin-uglify": "^3.0.0",
+		"x": "github:SeregPie/MyJavaScriptHelpers"
 	}
 }

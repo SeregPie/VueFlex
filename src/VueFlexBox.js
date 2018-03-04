@@ -125,6 +125,72 @@ export default {
 			})(),
 		};
 
-		return createElement(tag, {style}, this.$slots.default);
+		return (
+			createElement(
+				tag,
+				{
+					style: {
+						position: 'relative',
+					},
+				},
+				[
+					createElement(
+						'div',
+						{
+							style: {
+								position: 'relative',
+								height: margin === 0 ? 0 : `calc(100% + ${margin * 2}px)`,
+								margin: margin === 0 ? 0 : `${margin}px`,
+								display: 'flex',
+								flexDirection: (
+									directionColumn
+										? reverseDirection
+											? 'column-reverse'
+											: 'column'
+										: reverseDirection
+											? 'row-reverse'
+											: 'row'
+								),
+								flexWrap: (
+									wrap
+										? reverseWrap
+											? 'wrap-reverse'
+											: 'wrap'
+										: 'nowrap'
+								),
+								justifyContent: (() => {
+									switch (justifyContent) {
+										case 'start':
+											return 'flex-start';
+										case 'end':
+											return 'flex-end';
+									}
+									return justifyContent;
+								})(),
+								alignItems: (() => {
+									switch (alignItems) {
+										case 'start':
+											return 'flex-start';
+										case 'end':
+											return 'flex-end';
+									}
+									return alignItems;
+								})(),
+								alignContent: (() => {
+									switch (alignContent) {
+										case 'start':
+											return 'flex-start';
+										case 'end':
+											return 'flex-end';
+									}
+									return alignContent;
+								})(),
+							},
+						},
+						this.$slots.default,
+					),
+				],
+			)
+		);
 	},
 };
