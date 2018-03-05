@@ -1,4 +1,4 @@
-# VueFlexBox
+# VueFlex
 
 ...
 
@@ -11,7 +11,7 @@
 ### npm
 
 ```shell
-npm install vueflexbox
+npm install vueflex
 ```
 
 ### ES module
@@ -20,7 +20,7 @@ Register the component globally.
 
 ```javascript
 import Vue from 'vue';
-import {VueFlexBox, VueFlexItem} from 'vueflexbox';
+import {VueFlexBox, VueFlexItem} from 'vueflex';
 
 Vue.component(VueFlexBox.name, VueFlexBox);
 Vue.component(VueFlexItem.name, VueFlexItem);
@@ -31,7 +31,7 @@ Vue.component(VueFlexItem.name, VueFlexItem);
 Register the component in the scope of another instance.
 
 ```javascript
-import {VueFlexBox, VueFlexItem} from 'vueflexbox';
+import {VueFlexBox, VueFlexItem} from 'vueflex';
 
 export default {
   // ...

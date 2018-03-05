@@ -9,22 +9,19 @@ export default {
 	},
 
 	computed: {
-		padding() {
-			if (this.$parent && this.$parent.$options.name === 'VueFlexBox') {
-				return this.$parent.childrenPadding;
-			}
-			return 0;
+		margin() {
+			return this.$parent.childrenMargin;
 		},
 	},
 
-	render(createElement) {
+	render(h) {
 		let tag = this.tag;
-		let padding = this.padding;
+		let margin = this.margin;
 
 		let style = {
-			padding: padding === 0 ? 0 : `${padding}px`,
+			margin: margin === 0 ? 0 : `${margin}px`,
 		};
 
-		return createElement(tag, {style}, this.$slots.default);
+		return h(tag, {style}, this.$slots.default);
 	},
 };

@@ -1,5 +1,4 @@
 import buble from 'rollup-plugin-buble';
-import nodeResolve from 'rollup-plugin-node-resolve';
 import uglify from 'rollup-plugin-uglify';
 
 import pkg from './package.json';
@@ -9,10 +8,10 @@ export default {
 	output: {
 		file: pkg.main,
 		format: 'umd',
-		name: 'VueFlex',
+		name: 'window',
+		extend: true,
 	},
 	plugins: [
-		nodeResolve(),
 		buble(),
 		uglify(),
 	],

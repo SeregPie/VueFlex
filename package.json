@@ -1,15 +1,16 @@
 {
 	"name": "vueflex",
-	"version": "18.1.22",
+	"version": "18.3.5",
 	"description": "...",
 	"main": "VueFlex.js",
 	"scripts": {
 		"build": "rollup -c",
+		"dev": "rollup -c -w",
 		"prepublishOnly": "npm run build"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/SeregPie/VueFlexBox.git"
+		"url": "git+https://github.com/SeregPie/VueFlex.git"
 	},
 	"keywords": [
 		"component",
@@ -19,17 +20,15 @@
 	"author": "Sergej Sintschilin",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/SeregPie/VueFlexBox/issues"
+		"url": "https://github.com/SeregPie/VueFlex/issues"
 	},
-	"homepage": "https://github.com/SeregPie/VueFlexBox#readme",
+	"homepage": "https://github.com/SeregPie/VueFlex#readme",
 	"dependencies": {
 		"vue": "^2.5.13"
 	},
 	"devDependencies": {
-		"rollup": "^0.56.3",
+		"rollup": "^0.56.4",
 		"rollup-plugin-buble": "^0.19.2",
-		"rollup-plugin-node-resolve": "^3.0.3",
-		"rollup-plugin-uglify": "^3.0.0",
-		"x": "github:SeregPie/MyJavaScriptHelpers"
+		"rollup-plugin-uglify": "^3.0.0"
 	}
 }

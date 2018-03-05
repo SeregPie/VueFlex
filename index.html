@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+		/>
+		<title>VueFlex</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+		<script src="VueFlex.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.0.4/vuetify.min.css"
+		/>
+	</head>
+	<body>
+		<vue-flex-box
+			style="
+				background-color: red;
+				width: 250px;
+			"
+			wrap
+			direction-column
+			:spacing="16"
+			id="App"
+		>
+			<vue-flex-box :spacing="32">
+				<vue-flex-item>
+					<div
+						style="
+							width: 50px;
+							height: 50px;
+							background-color: green;
+						"
+					></div>
+				</vue-flex-item>
+				<vue-flex-item>
+					<div
+						style="
+							width: 50px;
+							height: 50px;
+							background-color: green;
+						"
+					></div>
+				</vue-flex-item>
+			</vue-flex-box>
+			<vue-flex-item>
+				<div
+					style="
+						width: 50px;
+						height: 50px;
+						background-color: green;
+					"
+				></div>
+			</vue-flex-item>
+			<vue-flex-item>
+				<div
+					style="
+						width: 50px;
+						height: 50px;
+						background-color: green;
+					"
+				></div>
+			</vue-flex-item>
+			<vue-flex-item>
+				<div
+					style="
+						width: 50px;
+						height: 50px;
+						background-color: green;
+					"
+				></div>
+			</vue-flex-item>
+		</vue-flex-box>
+		<script src="demo/index.js"></script>
+	</body>
+</html>

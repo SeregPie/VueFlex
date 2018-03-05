@@ -6,10 +6,6 @@ export default {
 			type: String,
 			default: 'div',
 		},
-		fillHeight: {
-			type: Boolean,
-			default: false,
-		},
 		directionColumn: {
 			type: Boolean,
 			default: false,
@@ -38,10 +34,6 @@ export default {
 			type: String,
 			default: 'start',
 		},
-		padding: {
-			type: Number,
-			default: 0,
-		},
 		spacing: {
 			type: Number,
 			default: 0,
@@ -49,24 +41,18 @@ export default {
 	},
 
 	computed: {
-		childrenPadding() {
-			if (this.$parent && this.$parent.$options.name === 'VueFlexBox') {
-				return this.$parent.childrenPadding;
-			}
-			return this.spacing / 2;
+		nested() {
+			return this.$parent && this.$parent.$options.name === this.$options.name;
 		},
 
-		margin() {
-			if (this.$parent && this.$parent.$options.name === 'VueFlexBox') {
-				return 0;
-			}
-			return this.padding - this.childrenPadding;
+		childrenMargin() {
+			return this.nested ? this.$parent.childrenMargin : this.spacing / 2;
 		},
 	},
 
-	render(createElement) {
+	render(h) {
 		let tag = this.tag;
-		let fillHeight = this.fillHeight;
+		let nested = this.nested;
 		let directionColumn = this.directionColumn;
 		let reverseDirection = this.reverseDirection;
 		let wrap = this.wrap;
@@ -74,12 +60,13 @@ export default {
 		let justifyContent = this.justifyContent;
 		let alignItems = this.alignItems;
 		let alignContent = this.alignContent;
-		let margin = this.margin;
+		let spacing = this.spacing;
 
 		let style = {
-			position: 'relative',
-			margin: margin === 0 ? 0 : `${margin}px`,
-			display: 'flex',
+			width: nested || spacing === 0 ? '100%' : `calc(100% + ${spacing}px)`,
+			height: nested || spacing === 0 ? '100%' : `calc(100% + ${spacing}px)`,
+			margin: nested || spacing === 0 ? 0 : `${-spacing / 2}px`,
+			display: nested ? 'flex' : 'inline-flex',
 			flexDirection: (
 				directionColumn
 					? reverseDirection
@@ -125,72 +112,6 @@ export default {
 			})(),
 		};
 
-		return (
-			createElement(
-				tag,
-				{
-					style: {
-						position: 'relative',
-					},
-				},
-				[
-					createElement(
-						'div',
-						{
-							style: {
-								position: 'relative',
-								height: margin === 0 ? 0 : `calc(100% + ${margin * 2}px)`,
-								margin: margin === 0 ? 0 : `${margin}px`,
-								display: 'flex',
-								flexDirection: (
-									directionColumn
-										? reverseDirection
-											? 'column-reverse'
-											: 'column'
-										: reverseDirection
-											? 'row-reverse'
-											: 'row'
-								),
-								flexWrap: (
-									wrap
-										? reverseWrap
-											? 'wrap-reverse'
-											: 'wrap'
-										: 'nowrap'
-								),
-								justifyContent: (() => {
-									switch (justifyContent) {
-										case 'start':
-											return 'flex-start';
-										case 'end':
-											return 'flex-end';
-									}
-									return justifyContent;
-								})(),
-								alignItems: (() => {
-									switch (alignItems) {
-										case 'start':
-											return 'flex-start';
-										case 'end':
-											return 'flex-end';
-									}
-									return alignItems;
-								})(),
-								alignContent: (() => {
-									switch (alignContent) {
-										case 'start':
-											return 'flex-start';
-										case 'end':
-											return 'flex-end';
-									}
-									return alignContent;
-								})(),
-							},
-						},
-						this.$slots.default,
-					),
-				],
-			)
-		);
+		return h(tag, [h('div', {style}, this.$slots.default)]);
 	},
 };
