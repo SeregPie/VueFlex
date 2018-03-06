@@ -11,7 +11,7 @@
 ### npm
 
 ```shell
-npm install vueflex
+npm install @seregpie/vueflex
 ```
 
 ### ES module
@@ -20,7 +20,7 @@ Register the component globally.
 
 ```javascript
 import Vue from 'vue';
-import {VueFlexBox, VueFlexItem} from 'vueflex';
+import {VueFlexBox, VueFlexItem} from '@seregpie/vueflex';
 
 Vue.component(VueFlexBox.name, VueFlexBox);
 Vue.component(VueFlexItem.name, VueFlexItem);
@@ -31,7 +31,7 @@ Vue.component(VueFlexItem.name, VueFlexItem);
 Register the component in the scope of another instance.
 
 ```javascript
-import {VueFlexBox, VueFlexItem} from 'vueflex';
+import {VueFlexBox, VueFlexItem} from '@seregpie/vueflex';
 
 export default {
   // ...
@@ -46,7 +46,7 @@ export default {
 
 ```html
 <script src="https://unpkg.com/vue"></script>
-<script src="https://unpkg.com/vueflex"></script>
+<script src="https://unpkg.com/@seregpie/vueflex"></script>
 ```
 
 If Vue is detected, the component will be registered automatically.
