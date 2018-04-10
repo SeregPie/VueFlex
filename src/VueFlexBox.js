@@ -32,7 +32,7 @@ export default {
 		},
 		alignContent: {
 			type: String,
-			default: 'start',
+			default: 'stretch',
 		},
 		spacing: {
 			type: Number,
