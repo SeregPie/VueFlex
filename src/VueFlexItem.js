@@ -10,16 +10,18 @@ export default {
 
 	computed: {
 		margin() {
-			return this.$parent.childrenMargin;
+			return this.$parent.childMargin;
 		},
 	},
 
 	render(h) {
-		let tag = this.tag;
-		let margin = this.margin;
+		let {
+			tag,
+			margin,
+		} = this;
 
 		let style = {
-			margin: margin === 0 ? 0 : `${margin}px`,
+			margin: margin,
 		};
 
 		return h(tag, {style}, this.$slots.default);

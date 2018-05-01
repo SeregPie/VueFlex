@@ -45,73 +45,155 @@ export default {
 			return this.$parent && this.$parent.$options.name === this.$options.name;
 		},
 
-		childrenMargin() {
-			return this.nested ? this.$parent.childrenMargin : this.spacing / 2;
+		spacingMeasure() {
+			if (this.nested) {
+				return this.$parent.spacingMeasure;
+			}
+			return [this.spacing, 'px'];
+		},
+
+		spacingNumber() {
+			return this.spacingMeasure[0];
+		},
+
+		spacingUnit() {
+			return this.spacingMeasure[1];
+		},
+
+		margin() {
+			if (this.nested) {
+				return this.$parent.childMargin;
+			}
+		},
+
+		childMarginNumber() {
+			return this.spacingNumber / 2;
+		},
+
+		childMarginUnit() {
+			return this.spacingUnit;
+		},
+
+		childMargin() {
+			let {
+				childMarginNumber: number,
+				childMarginUnit: unit,
+			} = this;
+
+			if (number === 0) {
+				return 0;
+			}
+			return `${number}${unit}`;
+		},
+
+		innerMarginNumber() {
+			return -this.childMarginNumber;
+		},
+
+		innerMarginUnit() {
+			return this.childMarginUnit;
+		},
+
+		innerMargin() {
+			let {
+				innerMarginNumber: number,
+				innerMarginUnit: unit,
+			} = this;
+
+			if (number === 0) {
+				return 0;
+			}
+			return `${number}${unit}`;
+		},
+
+		innerSize() {
+			let {
+				innerMarginNumber,
+				innerMarginUnit,
+			} = this;
+
+			if (innerMarginNumber === 0) {
+				return '100%';
+			}
+			return `calc(100% + ${-innerMarginNumber * 2}${innerMarginUnit})`;
 		},
 	},
 
 	render(h) {
-		let tag = this.tag;
-		let nested = this.nested;
-		let directionColumn = this.directionColumn;
-		let reverseDirection = this.reverseDirection;
-		let wrap = this.wrap;
-		let reverseWrap = this.reverseWrap;
-		let justifyContent = this.justifyContent;
-		let alignItems = this.alignItems;
-		let alignContent = this.alignContent;
-		let spacing = this.spacing;
+		let {
+			tag,
+			nested,
+			margin,
+			innerMargin,
+			innerSize,
+			directionColumn,
+			reverseDirection,
+			wrap,
+			reverseWrap,
+			justifyContent,
+			alignItems,
+			alignContent,
+		} = this;
 
-		let style = {
-			width: nested || spacing === 0 ? '100%' : `calc(100% + ${spacing}px)`,
-			height: nested || spacing === 0 ? '100%' : `calc(100% + ${spacing}px)`,
-			margin: nested || spacing === 0 ? 0 : `${-spacing / 2}px`,
-			display: nested ? 'flex' : 'inline-flex',
-			flexDirection: (
-				directionColumn
-					? reverseDirection
-						? 'column-reverse'
-						: 'column'
-					: reverseDirection
-						? 'row-reverse'
-						: 'row'
-			),
-			flexWrap: (
-				wrap
-					? reverseWrap
-						? 'wrap-reverse'
-						: 'wrap'
-					: 'nowrap'
-			),
-			justifyContent: (() => {
-				switch (justifyContent) {
-					case 'start':
-						return 'flex-start';
-					case 'end':
-						return 'flex-end';
-				}
-				return justifyContent;
-			})(),
-			alignItems: (() => {
-				switch (alignItems) {
-					case 'start':
-						return 'flex-start';
-					case 'end':
-						return 'flex-end';
-				}
-				return alignItems;
-			})(),
-			alignContent: (() => {
-				switch (alignContent) {
-					case 'start':
-						return 'flex-start';
-					case 'end':
-						return 'flex-end';
-				}
-				return alignContent;
-			})(),
-		};
-
-		return h(tag, [h('div', {style}, this.$slots.default)]);
+		let el;
+		{
+			let style = {
+				margin: innerMargin,
+				width: innerSize,
+				height: innerSize,
+				display: nested ? 'flex' : 'inline-flex',
+				flexDirection: (
+					directionColumn
+						? reverseDirection
+							? 'column-reverse'
+							: 'column'
+						: reverseDirection
+							? 'row-reverse'
+							: 'row'
+				),
+				flexWrap: (
+					wrap
+						? reverseWrap
+							? 'wrap-reverse'
+							: 'wrap'
+						: 'nowrap'
+				),
+				justifyContent: (() => {
+					switch (justifyContent) {
+						case 'start':
+							return 'flex-start';
+						case 'end':
+							return 'flex-end';
+					}
+					return justifyContent;
+				})(),
+				alignItems: (() => {
+					switch (alignItems) {
+						case 'start':
+							return 'flex-start';
+						case 'end':
+							return 'flex-end';
+					}
+					return alignItems;
+				})(),
+				alignContent: (() => {
+					switch (alignContent) {
+						case 'start':
+							return 'flex-start';
+						case 'end':
+							return 'flex-end';
+					}
+					return alignContent;
+				})(),
+			};
+			el = h('div', {style}, this.$slots.default);
+		}
+		{
+			let style = {
+				margin: margin,
+			};
+			el = h(tag, {style}, [el]);
+		}
+		return el;
 	},
 };
