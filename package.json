@@ -1,7 +1,7 @@
 {
 	"name": "@seregpie/vueflex",
 	"version": "18.4.10",
-	"description": "...",
+	"description": "A flexbox grid system.",
 	"main": "VueFlex.js",
 	"scripts": {
 		"build": "rollup -c",
@@ -13,8 +13,10 @@
 		"url": "git+https://github.com/SeregPie/VueFlex.git"
 	},
 	"keywords": [
+		"box",
 		"component",
 		"flex",
+		"grid",
 		"vue"
 	],
 	"author": "Sergej Sintschilin",

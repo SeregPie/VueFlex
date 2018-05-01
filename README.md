@@ -1,6 +1,10 @@
 # VueFlex
 
-...
+A flexbox grid system.
+
+## demo
+
+[Try it out!](https://seregpie.github.io/VueFlex/)
 
 ## dependencies
 
@@ -16,28 +20,26 @@ npm install @seregpie/vueflex
 
 ### ES module
 
-Register the component globally.
+Register the components globally.
 
 ```javascript
 import Vue from 'vue';
-import {VueFlexBox, VueFlexItem} from '@seregpie/vueflex';
+import VueFlex from '@seregpie/vueflex';
 
-Vue.component(VueFlexBox.name, VueFlexBox);
-Vue.component(VueFlexItem.name, VueFlexItem);
+Vue.use(VueFlex);
 ```
 
 *or*
 
-Register the component in the scope of another instance.
+Register the components in the scope of another instance.
 
 ```javascript
-import {VueFlexBox, VueFlexItem} from '@seregpie/vueflex';
+import VueFlex from '@seregpie/vueflex';
 
 export default {
   // ...
   components: {
-    [VueFlexBox.name]: VueFlexBox,
-    [VueFlexItem.name]: VueFlexItem,
+    ...VueFlex.components
   },
 };
 ```
