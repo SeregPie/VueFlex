@@ -85,6 +85,14 @@ Nested boxes inherit spacing from their parent.
 </vue-flex-box>
 ```
 
+---
+
+Provide any unit.
+
+```html
+<vue-flex-box spacing="2em"><!--...--></vue-flex-box>
+```
+
 ## components
 
 ### VueFlexBox
@@ -105,7 +113,7 @@ Nested boxes inherit spacing from their parent.
 | `justifyContent` | `String` | `'flex-start'` |
 | `alignItems` | `String` | `'stretch'` |
 | `alignContent` | `String` | `'stretch'` |
-| `spacing` | `Number` | `0` |
+| `spacing` | `[Number, String]` | `0` |
 
 ### VueFlexItem
 

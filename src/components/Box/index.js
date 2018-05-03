@@ -1,3 +1,5 @@
+import Number_isNumber from 'x/src/Number/isNumber';
+
 export default {
 	name: 'VueFlexBox',
 
@@ -41,23 +43,50 @@ export default {
 	},
 
 	computed: {
+		normalizedJustifyContent() {
+			let {justifyContent} = this;
+
+			switch (justifyContent) {
+				case 'start':
+					return 'flex-start';
+				case 'end':
+					return 'flex-end';
+			}
+			return justifyContent;
+		},
+
+		normalizedAlignItems() {
+			let {alignItems} = this;
+
+			switch (alignItems) {
+				case 'start':
+					return 'flex-start';
+				case 'end':
+					return 'flex-end';
+			}
+			return alignItems;
+		},
+
+		normalizedAlignContent() {
+			let {alignContent} = this;
+
+			switch (alignContent) {
+				case 'start':
+					return 'flex-start';
+				case 'end':
+					return 'flex-end';
+			}
+			return alignContent;
+		},
+
+		normalizedSpacing() {
+			let {spacing} = this;
+
+			return Number_isNumber(spacing) ? `${spacing}px` : spacing;
+		},
+
 		nested() {
 			return this.$parent && this.$parent.$options.name === this.$options.name;
-		},
-
-		spacingMeasure() {
-			if (this.nested) {
-				return this.$parent.spacingMeasure;
-			}
-			return [this.spacing, 'px'];
-		},
-
-		spacingNumber() {
-			return this.spacingMeasure[0];
-		},
-
-		spacingUnit() {
-			return this.spacingMeasure[1];
 		},
 
 		margin() {
@@ -66,56 +95,19 @@ export default {
 			}
 		},
 
-		childMarginNumber() {
-			return this.spacingNumber / 2;
-		},
-
-		childMarginUnit() {
-			return this.spacingUnit;
-		},
-
 		childMargin() {
-			let {
-				childMarginNumber: number,
-				childMarginUnit: unit,
-			} = this;
-
-			if (number === 0) {
-				return 0;
+			if (this.nested) {
+				return this.$parent.childMargin;
 			}
-			return `${number}${unit}`;
-		},
-
-		innerMarginNumber() {
-			return -this.childMarginNumber;
-		},
-
-		innerMarginUnit() {
-			return this.childMarginUnit;
+			return `${this.normalizedSpacing} / 2`;
 		},
 
 		innerMargin() {
-			let {
-				innerMarginNumber: number,
-				innerMarginUnit: unit,
-			} = this;
-
-			if (number === 0) {
-				return 0;
-			}
-			return `${number}${unit}`;
+			return `-1 * (${this.childMargin})`;
 		},
 
 		innerSize() {
-			let {
-				innerMarginNumber,
-				innerMarginUnit,
-			} = this;
-
-			if (innerMarginNumber === 0) {
-				return '100%';
-			}
-			return `calc(100% + ${-innerMarginNumber * 2}${innerMarginUnit})`;
+			return `100% - (${this.innerMargin}) * 2`;
 		},
 	},
 
@@ -130,70 +122,54 @@ export default {
 			reverseDirection,
 			wrap,
 			reverseWrap,
-			justifyContent,
-			alignItems,
-			alignContent,
+			normalizedJustifyContent: justifyContent,
+			normalizedAlignItems: alignItems,
+			normalizedAlignContent: alignContent,
+			$slots
 		} = this;
 
-		let el;
-		{
-			let style = {
-				margin: innerMargin,
-				width: innerSize,
-				height: innerSize,
-				display: nested ? 'flex' : 'inline-flex',
-				flexDirection: (
-					directionColumn
-						? reverseDirection
-							? 'column-reverse'
-							: 'column'
-						: reverseDirection
-							? 'row-reverse'
-							: 'row'
-				),
-				flexWrap: (
-					wrap
-						? reverseWrap
-							? 'wrap-reverse'
-							: 'wrap'
-						: 'nowrap'
-				),
-				justifyContent: (() => {
-					switch (justifyContent) {
-						case 'start':
-							return 'flex-start';
-						case 'end':
-							return 'flex-end';
-					}
-					return justifyContent;
-				})(),
-				alignItems: (() => {
-					switch (alignItems) {
-						case 'start':
-							return 'flex-start';
-						case 'end':
-							return 'flex-end';
-					}
-					return alignItems;
-				})(),
-				alignContent: (() => {
-					switch (alignContent) {
-						case 'start':
-							return 'flex-start';
-						case 'end':
-							return 'flex-end';
-					}
-					return alignContent;
-				})(),
-			};
-			el = h('div', {style}, this.$slots.default);
-		}
-		{
-			let style = {
-				margin: margin,
-			};
-			el = h(tag, {style}, [el]);
-		}
-		return el;
+		return (
+			h(
+				tag,
+				{
+					style: {
+						margin: `calc(${margin})`,
+					},
+				},
+				[
+					h(
+						'div',
+						{
+							style: {
+								margin: `calc(${innerMargin})`,
+								width: `calc(${innerSize})`,
+								height: `calc(${innerSize})`,
+								display: nested ? 'flex' : 'inline-flex',
+								flexDirection: (
+									directionColumn
+										? reverseDirection
+											? 'column-reverse'
+											: 'column'
+										: reverseDirection
+											? 'row-reverse'
+											: 'row'
+								),
+								flexWrap: (
+									wrap
+										? reverseWrap
+											? 'wrap-reverse'
+											: 'wrap'
+										: 'nowrap'
+								),
+								justifyContent: justifyContent,
+								alignItems: alignItems,
+								alignContent: alignContent,
+							},
+						},
+						$slots.default,
+					),
+				],
+			)
+		);
 	},
 };

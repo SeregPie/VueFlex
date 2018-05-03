@@ -18,12 +18,19 @@ export default {
 		let {
 			tag,
 			margin,
+			$slots,
 		} = this;
 
-		let style = {
-			margin: margin,
-		};
-
-		return h(tag, {style}, this.$slots.default);
+		return (
+			h(
+				tag,
+				{
+					style: {
+						margin: `calc(${margin})`,
+					},
+				},
+				$slots.default,
+			)
+		);
 	},
 };
