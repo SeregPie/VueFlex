@@ -39,7 +39,8 @@ import VueFlex from '@seregpie/vueflex';
 export default {
   // ...
   components: {
-    ...VueFlex.components
+    [VueFlex.Box.name]: VueFlex.Box,
+    [VueFlex.Item.name]: VueFlex.Item,
   },
 };
 ```

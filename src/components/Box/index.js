@@ -35,7 +35,7 @@ export default {
 			default: 'stretch',
 		},
 		spacing: {
-			type: Number,
+			type: [Number, String],
 			default: 0,
 		},
 	},

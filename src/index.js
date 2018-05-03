@@ -1,14 +1,17 @@
-import VueFlex from './VueFlex';
-export default VueFlex;
+import * as components from './components';
 
-/*
-import VueFlexBox from './VueFlexBox';
-import VueFlexItem from './VueFlexItem';
-export {
-	VueFlexBox,
-	VueFlexItem,
+let VueFlex = {
+	install(Vue) {
+		Object.values(this.components).forEach(component => {
+			Vue.component(component.name, component);
+		});
+	},
+	components,
 };
-*/
+
+Object.assign(VueFlex, components);
+
+export default VueFlex;
 
 if (typeof window !== 'undefined' && window.Vue) {
 	window.Vue.use(VueFlex);
