@@ -1,6 +1,6 @@
 {
 	"name": "@seregpie/vueflex",
-	"version": "18.5.3",
+	"version": "18.5.11",
 	"description": "A flexbox grid system.",
 	"main": "VueFlex.js",
 	"scripts": {
