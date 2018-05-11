@@ -14,7 +14,7 @@ export default {
 		},
 	},
 
-	render(h) {
+	render(createElement) {
 		let {
 			tag,
 			margin,
@@ -22,11 +22,11 @@ export default {
 		} = this;
 
 		return (
-			h(
+			createElement(
 				tag,
 				{
 					style: {
-						margin: `calc(${margin})`,
+						margin: margin,
 					},
 				},
 				$slots.default,

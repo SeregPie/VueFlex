@@ -95,23 +95,35 @@ export default {
 			}
 		},
 
-		childMargin() {
+		childMarginExpression() {
 			if (this.nested) {
-				return this.$parent.childMargin;
+				return this.$parent.childMarginExpression;
 			}
 			return `${this.normalizedSpacing} / 2`;
 		},
 
+		childMargin() {
+			return `calc(${this.childMarginExpression})`;
+		},
+
+		innerMarginExpression() {
+			return `-1 * (${this.childMarginExpression})`;
+		},
+
 		innerMargin() {
-			return `-1 * (${this.childMargin})`;
+			return `calc(${this.innerMarginExpression})`;
+		},
+
+		innerSizeExpression() {
+			return `100% - (${this.innerMarginExpression}) * 2`;
 		},
 
 		innerSize() {
-			return `100% - (${this.innerMargin}) * 2`;
+			return `calc(${this.innerSizeExpression})`;
 		},
 	},
 
-	render(h) {
+	render(createElement) {
 		let {
 			tag,
 			nested,
@@ -129,21 +141,21 @@ export default {
 		} = this;
 
 		return (
-			h(
+			createElement(
 				tag,
 				{
 					style: {
-						margin: `calc(${margin})`,
+						margin: margin,
 					},
 				},
 				[
-					h(
+					createElement(
 						'div',
 						{
 							style: {
-								margin: `calc(${innerMargin})`,
-								width: `calc(${innerSize})`,
-								height: `calc(${innerSize})`,
+								margin: innerMargin,
+								width: innerSize,
+								height: innerSize,
 								display: nested ? 'flex' : 'inline-flex',
 								flexDirection: (
 									directionColumn
