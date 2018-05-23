@@ -97,10 +97,6 @@ Provide any unit.
 
 ### VueFlexBox
 
-#### name
-
-`vue-flex-box`
-
 #### properties
 
 | property | type | default |
@@ -116,10 +112,6 @@ Provide any unit.
 | `spacing` | `[Number, String]` | `0` |
 
 ### VueFlexItem
-
-#### name
-
-`vue-flex-item`
 
 #### properties
 

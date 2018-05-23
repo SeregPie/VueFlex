@@ -1,4 +1,4 @@
-import Number_isNumber from 'x/src/Number/isNumber';
+import Number_isNumber from '/utils/Number/isNumber';
 
 export default {
 	name: 'VueFlexBox',

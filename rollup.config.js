@@ -1,6 +1,6 @@
 import buble from 'rollup-plugin-buble';
-import nodeResolve from 'rollup-plugin-node-resolve';
-import uglify from 'rollup-plugin-uglify';
+import resolve from '@seregpie/rollup-plugin-resolve';
+import {uglify} from 'rollup-plugin-uglify';
 
 import pkg from './package.json';
 
@@ -12,10 +12,8 @@ export default {
 		name: 'VueFlex',
 	},
 	plugins: [
-		nodeResolve(),
-		buble({
-			objectAssign: 'Object.assign',
-		}),
+		resolve(),
+		buble({objectAssign: 'Object.assign'}),
 		uglify(),
 	],
 };
