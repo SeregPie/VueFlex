@@ -58,23 +58,17 @@
 				<v-container
 					fill-height
 					hide-overflow
+					justify-center
 				>
 					<vue-flex-box
 						style="
 							width: 100%;
-							height: 100%;
+							max-width: 300px;
 						"
 						direction-column
-						justify-content="center"
-						align-items="center"
 						:spacing="16"
 					>
-						<vue-flex-item
-							style="
-								width: 100%;
-								max-width: 300px;
-							"
-						>
+						<vue-flex-item>
 							<div
 								style="
 									display: flex;
@@ -103,14 +97,7 @@
 								hide-details
 							></v-slider>
 						</vue-flex-item>
-						<vue-flex-item
-							style="
-								width: 100%;
-								height: 100%;
-								max-width: 300px;
-								max-height: 400px;
-							"
-						>
+						<vue-flex-item style="height: 400px;">
 							<vue-flex-box
 								class="pink lighten-3"
 								style="
