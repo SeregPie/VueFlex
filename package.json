@@ -8,10 +8,7 @@
 		"dev": "rollup -c -w",
 		"prepublishOnly": "npm run build"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/SeregPie/VueFlex.git"
-	},
+	"repository": "https://github.com/SeregPie/VueFlex.git",
 	"keywords": [
 		"box",
 		"component",
@@ -19,12 +16,8 @@
 		"grid",
 		"vue"
 	],
-	"author": "Sergej Sintschilin",
+	"author": "Sergej Sintschilin <seregpie@gmail.com>",
 	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/SeregPie/VueFlex/issues"
-	},
-	"homepage": "https://github.com/SeregPie/VueFlex#readme",
 	"dependencies": {
 		"vue": "^2.5.16"
 	},
