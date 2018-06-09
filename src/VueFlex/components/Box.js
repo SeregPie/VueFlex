@@ -8,34 +8,42 @@ export default {
 			type: String,
 			default: 'div',
 		},
+
 		directionColumn: {
 			type: Boolean,
 			default: false,
 		},
+
 		reverseDirection: {
 			type: Boolean,
 			default: false,
 		},
+
 		wrap: {
 			type: Boolean,
 			default: false,
 		},
+
 		reverseWrap: {
 			type: Boolean,
 			default: false,
 		},
+
 		justifyContent: {
 			type: String,
 			default: 'start',
 		},
+
 		alignItems: {
 			type: String,
 			default: 'stretch',
 		},
+
 		alignContent: {
 			type: String,
 			default: 'stretch',
 		},
+
 		spacing: {
 			type: [Number, String],
 			default: 0,
@@ -125,63 +133,61 @@ export default {
 
 	render(createElement) {
 		let {
-			tag,
-			nested,
-			margin,
+			$slots,
+			directionColumn,
 			innerMargin,
 			innerSize,
-			directionColumn,
-			reverseDirection,
-			wrap,
-			reverseWrap,
-			normalizedJustifyContent: justifyContent,
-			normalizedAlignItems: alignItems,
+			margin,
+			nested,
 			normalizedAlignContent: alignContent,
-			$slots
+			normalizedAlignItems: alignItems,
+			normalizedJustifyContent: justifyContent,
+			reverseDirection,
+			reverseWrap,
+			tag,
+			wrap,
 		} = this;
 
-		return (
-			createElement(
-				tag,
-				{
-					style: {
-						margin: margin,
-					},
-				},
-				[
-					createElement(
-						'div',
-						{
-							style: {
-								margin: innerMargin,
-								width: innerSize,
-								height: innerSize,
-								display: nested ? 'flex' : 'inline-flex',
-								flexDirection: (
-									directionColumn
-										? reverseDirection
-											? 'column-reverse'
-											: 'column'
-										: reverseDirection
-											? 'row-reverse'
-											: 'row'
-								),
-								flexWrap: (
-									wrap
-										? reverseWrap
-											? 'wrap-reverse'
-											: 'wrap'
-										: 'nowrap'
-								),
-								justifyContent: justifyContent,
-								alignItems: alignItems,
-								alignContent: alignContent,
-							},
-						},
-						$slots.default,
+		let innerElement = createElement(
+			'div',
+			{
+				style: {
+					margin: innerMargin,
+					width: innerSize,
+					height: innerSize,
+					display: nested ? 'flex' : 'inline-flex',
+					flexDirection: (
+						directionColumn
+							? reverseDirection
+								? 'column-reverse'
+								: 'column'
+							: reverseDirection
+								? 'row-reverse'
+								: 'row'
 					),
-				],
-			)
+					flexWrap: (
+						wrap
+							? reverseWrap
+								? 'wrap-reverse'
+								: 'wrap'
+							: 'nowrap'
+					),
+					justifyContent: justifyContent,
+					alignItems: alignItems,
+					alignContent: alignContent,
+				},
+			},
+			$slots.default,
 		);
+		let outerElement = createElement(
+			tag,
+			{
+				style: {
+					margin: margin,
+				},
+			},
+			[innerElement],
+		);
+		return outerElement;
 	},
 };

@@ -1,15 +1,16 @@
 import buble from 'rollup-plugin-buble';
+import path from 'path';
 import resolve from '@seregpie/rollup-plugin-resolve';
 import {uglify} from 'rollup-plugin-uglify';
 
-import pkg from './package.json';
+import {main} from './package.json';
 
 export default {
 	input: 'src/index.js',
 	output: {
-		file: pkg.main,
+		file: main,
 		format: 'umd',
-		name: 'VueFlex',
+		name: path.basename(main, path.extname(main)),
 	},
 	plugins: [
 		resolve(),

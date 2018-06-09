@@ -17,7 +17,7 @@
 		<script src="VueFlex.js"></script>
 		<link
 			rel="stylesheet"
-			href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
+			href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
 		/>
 		<link
 			rel="stylesheet"
@@ -25,9 +25,9 @@
 		/>
 		<link
 			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.0.17/vuetify.min.css"
+			href="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.1.0-beta.2/vuetify.min.css"
 		/>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.0.17/vuetify.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.1.0-beta.2/vuetify.min.js"></script>
 	</head>
 	<body>
 		<v-app
@@ -40,14 +40,18 @@
 				clipped-left
 				app
 			>
-				<v-toolbar-title>VueFlex</v-toolbar-title>
+				<v-toolbar-title>
+					VueFlex
+				</v-toolbar-title>
 				<v-spacer></v-spacer>
 				<v-btn
-					icon
 					href="https://github.com/SeregPie/VueFlex"
 					target="_blank"
+					icon
 				>
-					<v-icon>fab fa-github</v-icon>
+					<v-icon>
+						fab fa-github
+					</v-icon>
 				</v-btn>
 			</v-toolbar>
 			<v-content>
@@ -78,25 +82,24 @@
 									align-items: center;
 								"
 							>
-								<div class="input-group pa-0">
-									<label>
-										spacing
-									</label>
+								<div>
+									spacing
 								</div>
 								<v-chip
-									small
 									color="pink"
 									text-color="white"
+									small
 								>
 									{{ spacing }}px
 								</v-chip>
 							</div>
 							<v-slider
+								class="mx-2"
 								v-model="input.spacing.valueIndex"
-								color="pink"
-								class="px-2 py-0"
 								:min="0"
 								:max="input.spacing.values.length - 1"
+								color="pink"
+								ticks
 								hide-details
 							></v-slider>
 						</vue-flex-item>

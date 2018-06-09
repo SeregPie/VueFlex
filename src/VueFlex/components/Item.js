@@ -16,21 +16,19 @@ export default {
 
 	render(createElement) {
 		let {
-			tag,
-			margin,
 			$slots,
+			margin,
+			tag,
 		} = this;
 
-		return (
-			createElement(
-				tag,
-				{
-					style: {
-						margin: margin,
-					},
+		return createElement(
+			tag,
+			{
+				style: {
+					margin: margin,
 				},
-				$slots.default,
-			)
+			},
+			$slots.default,
 		);
 	},
 };
