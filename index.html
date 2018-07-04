@@ -2,10 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8"/>
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-		/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
 		<title>VueFlex</title>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
@@ -15,128 +12,38 @@
 			}
 		</style>
 		<script src="VueFlex.js"></script>
-		<link
-			rel="stylesheet"
-			href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.1.0-beta.2/vuetify.min.css"
-		/>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.1.0-beta.2/vuetify.min.js"></script>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"/>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.1.1/vuetify.min.css"/>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.1.1/vuetify.min.js"></script>
 	</head>
 	<body>
-		<v-app
-			v-cloak
-			id="App"
-		>
-			<v-toolbar
-				color="pink darken-3"
-				dark
-				clipped-left
-				app
-			>
-				<v-toolbar-title>
-					VueFlex
-				</v-toolbar-title>
+		<v-app v-cloak id="app">
+			<v-toolbar dark dense app>
+				<v-toolbar-title>VueFlex</v-toolbar-title>
 				<v-spacer></v-spacer>
-				<v-btn
-					href="https://github.com/SeregPie/VueFlex"
-					target="_blank"
-					icon
-				>
-					<v-icon>
-						fab fa-github
-					</v-icon>
+				<v-btn href="https://github.com/SeregPie/VueFlex" target="_blank" icon>
+					<v-icon>fab fa-github</v-icon>
 				</v-btn>
 			</v-toolbar>
 			<v-content>
-				<v-container
-					fill-height
-					hide-overflow
-					justify-center
-				>
-					<vue-flex-box
-						style="
-							width: 100%;
-							max-width: 300px;
-						"
-						direction-column
-						:spacing="16"
-					>
+				<v-container fill-height justify-center>
+					<vue-flex-box style="width: 100%; max-width: 300px;" direction-column spacing="16px">
 						<vue-flex-item>
-							<div
-								style="
-									display: flex;
-									justify-content: space-between;
-									align-items: center;
-								"
-							>
-								<div>
-									spacing
-								</div>
-								<v-chip
-									color="pink"
-									text-color="white"
-									small
-								>
-									{{ spacing }}px
-								</v-chip>
+							<div style="display: flex; justify-content: space-between; align-items: center;">
+								<div>spacing</div>
+								<v-chip small>{{ spacing }}px</v-chip>
 							</div>
-							<v-slider
-								class="mx-2"
-								v-model="input.spacing.valueIndex"
-								:min="0"
-								:max="input.spacing.values.length - 1"
-								color="pink"
-								ticks
-								hide-details
-							></v-slider>
+							<v-slider class="mx-2" v-model="spacingValueIndex" :min="0" :max="spacingValues.length - 1" ticks hide-details></v-slider>
 						</vue-flex-item>
 						<vue-flex-item style="height: 400px;">
-							<vue-flex-box
-								class="pink lighten-3"
-								style="
-									width: 100%;
-									height: 100%;
-								"
-								:spacing="spacing"
-							>
-								<vue-flex-box
-									class="pink lighten-4"
-									style="flex: 1;"
-									direction-column
-								>
-									<vue-flex-item
-										class="pink lighten-5"
-										style="flex: 1;"
-									></vue-flex-item>
-									<vue-flex-item
-										class="pink lighten-5"
-										style="height: 100px;"
-									></vue-flex-item>
+							<vue-flex-box class="pink lighten-3" style="width: 100%; height: 100%;" :spacing="spacing">
+								<vue-flex-box class="pink lighten-4" style="flex: 1 0 0%;" direction-column>
+									<vue-flex-item class="pink lighten-5" style="flex: 1 1 0%;"></vue-flex-item>
+									<vue-flex-item class="pink lighten-5" style="height: 100px;"></vue-flex-item>
 								</vue-flex-box>
-								<vue-flex-box
-									style="flex: 3;"
-									class="pink lighten-4"
-									wrap
-									justify-content="center"
-									align-items="center"
-									align-content="center"
-								>
-									<vue-flex-item
-										v-for="i in 3"
-										:key="i"
-										class="pink lighten-5"
-										style="
-											width: 75px;
-											height: 75px;
-										"
-									></vue-flex-item>
+								<vue-flex-box style="flex: 3 0 0%;" class="pink lighten-4" wrap justify-content="center" align-items="center" align-content="center">
+									<vue-flex-item v-for="i in 3" :key="i" class="pink lighten-5" style="width: 75px; height: 75px;"></vue-flex-item>
 								</vue-flex-box>
 							</vue-flex-box>
 						</vue-flex-item>
