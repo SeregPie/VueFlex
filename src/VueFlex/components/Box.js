@@ -31,7 +31,7 @@ export default {
 
 		justifyContent: {
 			type: String,
-			default: 'start',
+			default: 'flex-start',
 		},
 
 		alignItems: {
@@ -51,42 +51,6 @@ export default {
 	},
 
 	computed: {
-		normalizedJustifyContent() {
-			let {justifyContent} = this;
-
-			switch (justifyContent) {
-				case 'start':
-					return 'flex-start';
-				case 'end':
-					return 'flex-end';
-			}
-			return justifyContent;
-		},
-
-		normalizedAlignItems() {
-			let {alignItems} = this;
-
-			switch (alignItems) {
-				case 'start':
-					return 'flex-start';
-				case 'end':
-					return 'flex-end';
-			}
-			return alignItems;
-		},
-
-		normalizedAlignContent() {
-			let {alignContent} = this;
-
-			switch (alignContent) {
-				case 'start':
-					return 'flex-start';
-				case 'end':
-					return 'flex-end';
-			}
-			return alignContent;
-		},
-
 		normalizedSpacing() {
 			let {spacing} = this;
 
@@ -95,12 +59,6 @@ export default {
 
 		nested() {
 			return this.$parent && this.$parent.$options.name === this.$options.name;
-		},
-
-		margin() {
-			if (this.nested) {
-				return this.$parent.childMargin;
-			}
 		},
 
 		childMarginExpression() {
@@ -129,19 +87,25 @@ export default {
 		innerSize() {
 			return `calc(${this.innerSizeExpression})`;
 		},
+
+		outerMargin() {
+			if (this.nested) {
+				return this.$parent.childMargin;
+			}
+		},
 	},
 
 	render(createElement) {
 		let {
 			$slots,
+			alignContent,
+			alignItems,
 			directionColumn,
 			innerMargin,
 			innerSize,
-			margin,
+			justifyContent,
 			nested,
-			normalizedAlignContent: alignContent,
-			normalizedAlignItems: alignItems,
-			normalizedJustifyContent: justifyContent,
+			outerMargin,
 			reverseDirection,
 			reverseWrap,
 			tag,
@@ -183,7 +147,7 @@ export default {
 			tag,
 			{
 				style: {
-					margin: margin,
+					margin: outerMargin,
 				},
 			},
 			[innerElement],
