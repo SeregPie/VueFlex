@@ -102,13 +102,13 @@ Provide any unit.
 | property | type | default |
 | ---: | :--- | :--- |
 | `tag` | `String` | `'div'` |
+| `alignContent` | `String` | `'stretch'` |
+| `alignItems` | `String` | `'stretch'` |
 | `directionColumn` | `Boolean` | `false` |
 | `reverseDirection` | `Boolean` | `false` |
 | `wrap` | `Boolean` | `false` |
 | `reverseWrap` | `Boolean` | `false` |
 | `justifyContent` | `String` | `'flex-start'` |
-| `alignItems` | `String` | `'stretch'` |
-| `alignContent` | `String` | `'stretch'` |
 | `spacing` | `[Number, String]` | `0` |
 
 ### VueFlexItem

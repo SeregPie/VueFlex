@@ -9,6 +9,16 @@ export default {
 			default: 'div',
 		},
 
+		alignContent: {
+			type: String,
+			default: 'stretch',
+		},
+
+		alignItems: {
+			type: String,
+			default: 'stretch',
+		},
+
 		directionColumn: {
 			type: Boolean,
 			default: false,
@@ -32,16 +42,6 @@ export default {
 		justifyContent: {
 			type: String,
 			default: 'flex-start',
-		},
-
-		alignItems: {
-			type: String,
-			default: 'stretch',
-		},
-
-		alignContent: {
-			type: String,
-			default: 'stretch',
 		},
 
 		spacing: {
@@ -111,15 +111,13 @@ export default {
 			tag,
 			wrap,
 		} = this;
-
 		let innerElement = createElement(
 			'div',
 			{
 				style: {
-					margin: innerMargin,
-					width: innerSize,
-					height: innerSize,
 					display: nested ? 'flex' : 'inline-flex',
+					alignContent: alignContent,
+					alignItems: alignItems,
 					flexDirection: (
 						directionColumn
 							? reverseDirection
@@ -137,8 +135,9 @@ export default {
 							: 'nowrap'
 					),
 					justifyContent: justifyContent,
-					alignItems: alignItems,
-					alignContent: alignContent,
+					margin: innerMargin,
+					width: innerSize,
+					height: innerSize,
 				},
 			},
 			$slots.default,

@@ -20,7 +20,6 @@ export default {
 			margin,
 			tag,
 		} = this;
-
 		return createElement(
 			tag,
 			{
