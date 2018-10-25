@@ -4,11 +4,6 @@ export default {
 	name: 'VueFlexBox',
 
 	props: {
-		tag: {
-			type: String,
-			default: 'div',
-		},
-
 		alignContent: {
 			type: String,
 			default: 'stretch',
@@ -24,12 +19,12 @@ export default {
 			default: false,
 		},
 
-		reverseDirection: {
-			type: Boolean,
-			default: false,
+		justifyContent: {
+			type: String,
+			default: 'flex-start',
 		},
 
-		wrap: {
+		reverseDirection: {
 			type: Boolean,
 			default: false,
 		},
@@ -39,26 +34,25 @@ export default {
 			default: false,
 		},
 
-		justifyContent: {
-			type: String,
-			default: 'flex-start',
-		},
-
 		spacing: {
 			type: [Number, String],
 			default: 0,
 		},
+
+		tag: {
+			type: String,
+			default: 'div',
+		},
+
+		wrap: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	computed: {
-		normalizedSpacing() {
-			let {spacing} = this;
-
-			return Number_isNumber(spacing) ? `${spacing}px` : spacing;
-		},
-
-		nested() {
-			return this.$parent && this.$parent.$options.name === this.$options.name;
+		childMargin() {
+			return `calc(${this.childMarginExpression})`;
 		},
 
 		childMarginExpression() {
@@ -68,24 +62,29 @@ export default {
 			return `${this.normalizedSpacing} / 2`;
 		},
 
-		childMargin() {
-			return `calc(${this.childMarginExpression})`;
+		innerMargin() {
+			return `calc(${this.innerMarginExpression})`;
 		},
 
 		innerMarginExpression() {
 			return `-1 * (${this.childMarginExpression})`;
 		},
 
-		innerMargin() {
-			return `calc(${this.innerMarginExpression})`;
+		innerSize() {
+			return `calc(${this.innerSizeExpression})`;
 		},
 
 		innerSizeExpression() {
 			return `100% - (${this.innerMarginExpression}) * 2`;
 		},
 
-		innerSize() {
-			return `calc(${this.innerSizeExpression})`;
+		nested() {
+			return this.$parent && this.$parent.$options.name === this.$options.name;
+		},
+
+		normalizedSpacing() {
+			let {spacing} = this;
+			return Number_isNumber(spacing) ? `${spacing}px` : spacing;
 		},
 
 		outerMargin() {
@@ -111,46 +110,44 @@ export default {
 			tag,
 			wrap,
 		} = this;
-		let innerElement = createElement(
-			'div',
-			{
-				style: {
-					display: nested ? 'flex' : 'inline-flex',
-					alignContent: alignContent,
-					alignItems: alignItems,
-					flexDirection: (
-						directionColumn
-							? reverseDirection
-								? 'column-reverse'
-								: 'column'
-							: reverseDirection
-								? 'row-reverse'
-								: 'row'
-					),
-					flexWrap: (
-						wrap
-							? reverseWrap
-								? 'wrap-reverse'
-								: 'wrap'
-							: 'nowrap'
-					),
-					justifyContent: justifyContent,
-					margin: innerMargin,
-					minWidth: innerSize,
-					minHeight: innerSize,
-				},
-			},
-			$slots.default,
-		);
-		let outerElement = createElement(
+		return createElement(
 			tag,
 			{
 				style: {
 					margin: outerMargin,
 				},
 			},
-			[innerElement],
+			[createElement(
+				'div',
+				{
+					style: {
+						alignContent: alignContent,
+						alignItems: alignItems,
+						display: nested ? 'flex' : 'inline-flex',
+						flexDirection: (
+							directionColumn
+								? reverseDirection
+									? 'column-reverse'
+									: 'column'
+								: reverseDirection
+									? 'row-reverse'
+									: 'row'
+						),
+						flexWrap: (
+							wrap
+								? reverseWrap
+									? 'wrap-reverse'
+									: 'wrap'
+								: 'nowrap'
+						),
+						justifyContent: justifyContent,
+						margin: innerMargin,
+						minHeight: innerSize,
+						minWidth: innerSize,
+					},
+				},
+				$slots.default,
+			)],
 		);
-		return outerElement;
 	},
 };

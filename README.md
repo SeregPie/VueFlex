@@ -31,17 +31,17 @@ Vue.use(VueFlex);
 
 *or*
 
-Register the components in the scope of another instance.
+Register the components in the scope of another component.
 
 ```javascript
 import VueFlex from '@seregpie/vueflex';
 
 export default {
-  // ...
   components: {
     [VueFlex.Box.name]: VueFlex.Box,
     [VueFlex.Item.name]: VueFlex.Item,
   },
+  /*...*/
 };
 ```
 
@@ -58,10 +58,10 @@ If Vue is detected, the components will be registered automatically.
 
 ```html
 <vue-flex-box
-  wrap
-  justify-content="space-between"
-  align-items="center"
   :spacing="16"
+  align-items="center"
+  justify-content="space-between"
+  wrap
 >
   <vue-flex-item><!--...--></vue-flex-item>
   <vue-flex-item><!--...--></vue-flex-item>
@@ -70,14 +70,16 @@ If Vue is detected, the components will be registered automatically.
 
 ---
 
-Nested boxes inherit spacing from their parent.
+Nested boxes inherit the spacing from their parent.
 
 ```html
 <vue-flex-box :spacing="8">
-  <vue-flex-item style="width: 100px;"><!--...--></vue-flex-item>
+  <vue-flex-item
+    style="width: 100px;"
+  ><!--...--></vue-flex-item>
   <vue-flex-box
-    style="flex: 1;"
     direction-column
+    style="flex-grow: 1;"
   >
     <vue-flex-item><!--...--></vue-flex-item>
     <vue-flex-item><!--...--></vue-flex-item>
@@ -101,15 +103,15 @@ Provide any unit.
 
 | property | type | default |
 | ---: | :--- | :--- |
-| `tag` | `String` | `'div'` |
-| `alignContent` | `String` | `'stretch'` |
-| `alignItems` | `String` | `'stretch'` |
-| `directionColumn` | `Boolean` | `false` |
-| `reverseDirection` | `Boolean` | `false` |
-| `wrap` | `Boolean` | `false` |
-| `reverseWrap` | `Boolean` | `false` |
-| `justifyContent` | `String` | `'flex-start'` |
+| `align-content` | `String` | `'stretch'` |
+| `align-items` | `String` | `'stretch'` |
+| `direction-column` | `Boolean` | `false` |
+| `justify-content` | `String` | `'flex-start'` |
+| `reverse-direction` | `Boolean` | `false` |
+| `reverse-wrap` | `Boolean` | `false` |
 | `spacing` | `[Number, String]` | `0` |
+| `tag` | `String` | `'div'` |
+| `wrap` | `Boolean` | `false` |
 
 ### VueFlexItem
 
