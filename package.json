@@ -2,13 +2,6 @@
 	"name": "@seregpie/vueflex",
 	"version": "18.7.4",
 	"description": "A flexbox grid system.",
-	"main": "VueFlex.js",
-	"scripts": {
-		"build": "rollup -c",
-		"dev": "rollup -c -w",
-		"prepublishOnly": "npm run build"
-	},
-	"repository": "https://github.com/SeregPie/VueFlex.git",
 	"keywords": [
 		"box",
 		"component",
@@ -16,8 +9,15 @@
 		"grid",
 		"vue"
 	],
-	"author": "Sergej Sintschilin <seregpie@gmail.com>",
 	"license": "MIT",
+	"author": "Sergej Sintschilin <seregpie@gmail.com>",
+	"main": "VueFlex.js",
+	"repository": "https://github.com/SeregPie/VueFlex.git",
+	"scripts": {
+		"build": "rollup -c",
+		"dev": "rollup -c -w",
+		"prepublishOnly": "npm run build"
+	},
 	"dependencies": {
 		"vue": "^2.5.16"
 	},
