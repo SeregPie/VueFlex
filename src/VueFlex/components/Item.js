@@ -25,8 +25,6 @@ export default {
 			{
 				style: {
 					margin: margin,
-					minHeight: 0,
-					minWidth: 0,
 				},
 			},
 			$slots.default,

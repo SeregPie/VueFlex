@@ -70,14 +70,6 @@ export default {
 			return `-1 * (${this.childMarginExpression})`;
 		},
 
-		innerSize() {
-			return `calc(${this.innerSizeExpression})`;
-		},
-
-		innerSizeExpression() {
-			return `100% - (${this.innerMarginExpression}) * 2`;
-		},
-
 		nested() {
 			return this.$parent && this.$parent.$options.name === this.$options.name;
 		},
@@ -101,7 +93,6 @@ export default {
 			alignItems,
 			directionColumn,
 			innerMargin,
-			innerSize,
 			justifyContent,
 			nested,
 			outerMargin,
@@ -114,6 +105,7 @@ export default {
 			tag,
 			{
 				style: {
+					display: 'flex',
 					margin: outerMargin,
 				},
 			},
@@ -124,6 +116,7 @@ export default {
 						alignContent: alignContent,
 						alignItems: alignItems,
 						display: nested ? 'flex' : 'inline-flex',
+						flex: '1 1 0%',
 						flexDirection: (
 							directionColumn
 								? reverseDirection
@@ -142,8 +135,6 @@ export default {
 						),
 						justifyContent: justifyContent,
 						margin: innerMargin,
-						minHeight: innerSize,
-						minWidth: innerSize,
 					},
 				},
 				$slots.default,
