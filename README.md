@@ -6,10 +6,6 @@ A flexbox grid system.
 
 [Try it out!](https://seregpie.github.io/VueFlex/)
 
-## dependencies
-
-- [Vue](https://github.com/vuejs/vue)
-
 ## setup
 
 ### npm
