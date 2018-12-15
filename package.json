@@ -1,11 +1,12 @@
 {
 	"name": "@seregpie/vueflex",
-	"version": "18.10.26",
+	"version": "19.0.0",
 	"description": "A flexbox grid system.",
 	"keywords": [
 		"box",
 		"component",
 		"flex",
+		"gap",
 		"grid",
 		"vue"
 	],
