@@ -54,7 +54,7 @@ If Vue is detected, the components will be registered automatically.
 
 ```html
 <vue-flex-box
-  :spacing="16"
+  :gap="16"
   align-items="center"
   justify-content="space-between"
   wrap
@@ -66,10 +66,10 @@ If Vue is detected, the components will be registered automatically.
 
 ---
 
-Nested boxes inherit the spacing from their parent.
+Nested boxes inherit the gap from their parent.
 
 ```html
-<vue-flex-box :spacing="8">
+<vue-flex-box :gap="8">
   <vue-flex-item
     style="width: 100px;"
   ><!--...--></vue-flex-item>
@@ -88,7 +88,7 @@ Nested boxes inherit the spacing from their parent.
 Provide any unit.
 
 ```html
-<vue-flex-box spacing="2em"><!--...--></vue-flex-box>
+<vue-flex-box gap="2em"><!--...--></vue-flex-box>
 ```
 
 ## components
@@ -102,10 +102,10 @@ Provide any unit.
 | `align-content` | `String` | `'stretch'` |
 | `align-items` | `String` | `'stretch'` |
 | `direction-column` | `Boolean` | `false` |
+| `gap` | `[Number, String]` | `0` |
 | `justify-content` | `String` | `'flex-start'` |
 | `reverse-direction` | `Boolean` | `false` |
 | `reverse-wrap` | `Boolean` | `false` |
-| `spacing` | `[Number, String]` | `0` |
 | `tag` | `String` | `'div'` |
 | `wrap` | `Boolean` | `false` |
 

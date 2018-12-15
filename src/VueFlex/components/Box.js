@@ -19,6 +19,11 @@ export default {
 			default: false,
 		},
 
+		gap: {
+			type: [Number, String],
+			default: 0,
+		},
+
 		justifyContent: {
 			type: String,
 			default: 'flex-start',
@@ -32,11 +37,6 @@ export default {
 		reverseWrap: {
 			type: Boolean,
 			default: false,
-		},
-
-		spacing: {
-			type: [Number, String],
-			default: 0,
 		},
 
 		tag: {
@@ -59,7 +59,7 @@ export default {
 			if (this.nested) {
 				return this.$parent.childMarginExpression;
 			}
-			return `${this.normalizedSpacing} / 2`;
+			return `${this.normalizedGap} / 2`;
 		},
 
 		innerMargin() {
@@ -74,9 +74,9 @@ export default {
 			return this.$parent && this.$parent.$options.name === this.$options.name;
 		},
 
-		normalizedSpacing() {
-			let {spacing} = this;
-			return Number_isNumber(spacing) ? `${spacing}px` : spacing;
+		normalizedGap() {
+			let {gap} = this;
+			return Number_isNumber(gap) ? `${gap}px` : gap;
 		},
 
 		outerMargin() {

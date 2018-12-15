@@ -76,15 +76,15 @@
 									>
 										<v-input
 											hide-details
-											label="spacing"
+											label="gap"
 										></v-input>
 										<v-chip
 											small
-										>{{ spacing }}px</v-chip>
+										>{{ gap }}px</v-chip>
 									</div>
 									<v-slider
-										v-model="spacingIndex"
-										:max="spacingValues.length - 1"
+										v-model="gapIndex"
+										:max="gapValues.length - 1"
 										:min="0"
 										class="mx-2 my-0"
 										hide-details
@@ -93,7 +93,7 @@
 								</v-flex>
 								<v-flex>
 									<vue-flex-box
-										:spacing="spacing"
+										:gap="gap"
 										class="pink lighten-3"
 										style="
 											height: 400px;
