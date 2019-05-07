@@ -1,5 +1,5 @@
 export default function() {
-	if (this.nested) {
+	if (this.$parent) {
 		return this.$parent.childMargin;
 	}
 }

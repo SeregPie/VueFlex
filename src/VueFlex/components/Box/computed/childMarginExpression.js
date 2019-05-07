@@ -1,6 +1,3 @@
 export default function() {
-	if (this.nested) {
-		return this.$parent.childMarginExpression;
-	}
-	return `${this.normalizedGap} / 2`;
+	return `${this.computedGap} / 2`;
 }

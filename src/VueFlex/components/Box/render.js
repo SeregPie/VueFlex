@@ -6,7 +6,6 @@ export default function(h) {
 		directionColumn,
 		innerMargin,
 		justifyContent,
-		nested,
 		outerMargin,
 		reverseDirection,
 		reverseWrap,
@@ -27,7 +26,7 @@ export default function(h) {
 				style: {
 					alignContent: alignContent,
 					alignItems: alignItems,
-					display: nested ? 'flex' : 'inline-flex',
+					display: 'flex',
 					flex: '1 1 0%',
 					flexDirection: (
 						directionColumn

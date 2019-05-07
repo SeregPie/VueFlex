@@ -14,7 +14,7 @@ A flexbox grid system.
 npm install @seregpie/vueflex
 ```
 
-### ES module
+---
 
 Register the components globally.
 
@@ -37,7 +37,6 @@ export default {
     [VueFlex.Box.name]: VueFlex.Box,
     [VueFlex.Item.name]: VueFlex.Item,
   },
-  /*...*/
 };
 ```
 
@@ -48,14 +47,14 @@ export default {
 <script src="https://unpkg.com/@seregpie/vueflex"></script>
 ```
 
-If Vue is detected, the components will be registered automatically.
+If Vue is detected, the components are registered automatically.
 
 ## usage
 
 ```html
 <vue-flex-box
-  :gap="16"
   align-items="center"
+  gap="16px"
   justify-content="space-between"
   wrap
 >
@@ -66,15 +65,16 @@ If Vue is detected, the components will be registered automatically.
 
 ---
 
-Nested boxes inherit the gap from their parent.
+Nested boxes can inherit the gap from their parent.
 
 ```html
-<vue-flex-box :gap="8">
+<vue-flex-box gap="8px">
   <vue-flex-item
     style="width: 100px;"
   ><!--...--></vue-flex-item>
   <vue-flex-box
     direction-column
+    gap="inherit"
     style="flex-grow: 1;"
   >
     <vue-flex-item><!--...--></vue-flex-item>
@@ -85,7 +85,7 @@ Nested boxes inherit the gap from their parent.
 
 ---
 
-Provide any unit.
+Provide any unit for the gap.
 
 ```html
 <vue-flex-box gap="2em"><!--...--></vue-flex-box>
@@ -99,13 +99,13 @@ Provide any unit.
 
 | property | type | default |
 | ---: | :--- | :--- |
-| `align-content` | `String` | `'stretch'` |
-| `align-items` | `String` | `'stretch'` |
-| `direction-column` | `Boolean` | `false` |
-| `gap` | `[Number, String]` | `0` |
-| `justify-content` | `String` | `'flex-start'` |
-| `reverse-direction` | `Boolean` | `false` |
-| `reverse-wrap` | `Boolean` | `false` |
+| `alignContent` | `String` | `'stretch'` |
+| `alignItems` | `String` | `'stretch'` |
+| `directionColumn` | `Boolean` | `false` |
+| `gap` | `String` | `'0px'` |
+| `justifyContent` | `String` | `'flex-start'` |
+| `reverseDirection` | `Boolean` | `false` |
+| `reverseWrap` | `Boolean` | `false` |
 | `tag` | `String` | `'div'` |
 | `wrap` | `Boolean` | `false` |
 

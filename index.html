@@ -83,7 +83,7 @@
 										></v-input>
 										<v-chip
 											small
-										>{{ gap }}px</v-chip>
+										>{{ gap }}</v-chip>
 									</div>
 									<v-slider
 										v-model="gapIndex"
@@ -106,6 +106,7 @@
 										<vue-flex-box
 											class="pink lighten-4"
 											direction-column
+											gap="inherit"
 											style="flex: 1 1 0%;"
 										>
 											<vue-flex-item
@@ -121,12 +122,13 @@
 											align-content="center"
 											align-items="center"
 											class="pink lighten-4"
+											gap="inherit"
 											justify-content="center"
 											style="flex: 3 1 0%;"
 											wrap
 										>
 											<vue-flex-item
-												v-for="i in 3"
+												v-for="i of 3"
 												:key="i"
 												class="pink lighten-5"
 												style="

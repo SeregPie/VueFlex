@@ -5,7 +5,7 @@
 
 		data: {
 			gapIndex: 2,
-			gapValues: [0, 1, 10, 50],
+			gapValues: ['0px', '1px', '10px', '50px'],
 		},
 
 		computed: {

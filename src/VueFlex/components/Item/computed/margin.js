@@ -1,3 +1,5 @@
 export default function() {
-	return this.$parent.childMargin;
+	if (this.$parent) {
+		return this.$parent.childMargin;
+	}
 }
